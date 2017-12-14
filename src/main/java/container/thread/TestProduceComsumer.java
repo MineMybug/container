@@ -8,7 +8,7 @@ public class TestProduceComsumer {
 	
 	public static void main(String[] args) {
 		TestProduceComsumer testProduceComsumer = new TestProduceComsumer();
-		TestProduceComsumer.Godown godown = testProduceComsumer.new Godown(40);
+		TestProduceComsumer.Godown godown = testProduceComsumer.getInstance(30);
 		TestProduceComsumer.Produce produce1 = testProduceComsumer.new Produce(10, godown);
 		TestProduceComsumer.Comsumer comsumer1 = testProduceComsumer.new Comsumer(15, godown);
 		TestProduceComsumer.Produce produce2 = testProduceComsumer.new Produce(20, godown);
@@ -17,6 +17,15 @@ public class TestProduceComsumer {
 		comsumer1.start();
 		produce2.start();
 		comsumer2.start();
+	}
+	
+	/**
+	 * »ñÈ¡²Ö¿âÊµÀý
+	 * @param currentNum
+	 * @return
+	 */
+	private Godown getInstance(int currentNum){
+		return new Godown(currentNum);
 	}
 	
 	/*
