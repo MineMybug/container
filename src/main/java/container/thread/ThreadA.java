@@ -9,23 +9,31 @@ import java.awt.List;
  */
 public class ThreadA implements Runnable {
 
-	private MyList list;
+	private Object obj;
 
-	public ThreadA(MyList list) {
+	public ThreadA(Object obj) {
 
 		super();
-		this.list = list;
+		this.obj = obj;
 	}
 
 	@Override
 	public void run() {
 		try {
-
-			for (int i = 0; i < 10; i++) {
-				list.add();
-				System.out.println("添加了" + (i + 1) + "个元素");
-				Thread.sleep(1000);
+			
+			synchronized (obj) {
+				
+				for (int i = 0; i < 15; i++) {
+					MyList.add();
+					System.out.println("添加了" + (i + 1) + "个元素");
+					Thread.sleep(1000);
+					if (MyList.size() == 5) {
+						obj.notify();
+						System.out.println("发出通知");
+					}
+				}
 			}
+
 		} catch (Exception e) {
 		}
 	}

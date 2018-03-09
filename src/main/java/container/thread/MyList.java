@@ -10,13 +10,13 @@ import java.util.List;
 
 public class MyList {
 	
-	private List list = new ArrayList();
+	private static List list = new ArrayList();
 	
-	public void add(){
+	public static void add(){
 		list.add("a");
 	}
 	
-	public int size(){
+	public static int size(){
 		return list.size();
 	}
 

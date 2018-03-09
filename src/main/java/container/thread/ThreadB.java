@@ -7,12 +7,12 @@ package container.thread;
  */
 public class ThreadB implements Runnable {
 
-	private MyList list;
+	private Object obj;
 
-	public ThreadB(MyList list) {
+	public ThreadB(Object obj) {
 
 		super();
-		this.list = list;
+		this.obj = obj;
 	}
 
 	@Override
@@ -20,13 +20,23 @@ public class ThreadB implements Runnable {
 
 		try {
 			
-			System.out.println("b开启了");
-			while (true) {
-				if (list.size() == 5) {
-					System.out.println("线程B要退出了！");
-					throw new InterruptedException();
+			System.out.println("b开启了" );
+//			while (true) {
+//				
+//				System.out.println("b开启了" + MyList.size());
+//				if (MyList.size() == 5) {
+//					System.out.println("线程B要退出了！");
+//					throw new InterruptedException();
+//				}
+//			}
+			
+			synchronized (obj) {
+				if (MyList.size() != 5) {
+					obj.wait();
+					System.out.println("b线程等待" + System.currentTimeMillis());
 				}
 			}
+			
 		} catch (Exception e) {
 
 		}

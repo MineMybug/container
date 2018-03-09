@@ -14,6 +14,8 @@ public class TestThreadAB {
 		bThread.setName("b");
 		bThread.start();
 		
+		
+		
 		ThreadA a = new ThreadA(list);
 		Thread aThread = new Thread(a);
 		aThread.setName("a");
